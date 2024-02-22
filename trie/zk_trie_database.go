@@ -19,10 +19,10 @@ import (
 // to iterate through adjacent leaves at a reduced cost.
 
 type ZktrieDatabase struct {
-	db     *Database
-	prefix []byte
+	db := NewDatabase(diskdb)
+	db.Zktrie = true
+	return &ZktrieDatabase{db: db, prefix: []byte{}}
 }
-
 func NewZktrieDatabase(diskdb ethdb.KeyValueStore) *ZktrieDatabase {
 	return &ZktrieDatabase{db: NewDatabase(diskdb), prefix: []byte{}}
 }
